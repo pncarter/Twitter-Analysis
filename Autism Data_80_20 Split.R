@@ -85,4 +85,10 @@ yy <- read.table(textConnection(""),col.names=colnames(dtm.mat),colClasses="inte
 IndicatorMatrix <-read.csv('Indicator Matrix_TrainingData.csv')
 TrainingIndicatorMatrix <- IndicatorMatrix[trainint,]
 TestingIndicatorMatrix <- IndicatorMatrix[TestingData,]
+
 ############################################################################################################################################################
+
+# Illustrates issue with indicator matrix.
+err = cbind(cbind(TrainingIndicatorMatrix, Truelabels_TrainingData) )
+
+            
