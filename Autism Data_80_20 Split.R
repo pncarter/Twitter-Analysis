@@ -56,12 +56,12 @@ trainint <- c(sample(which(TrainingLabels==0), numTrainPerClass, replace= TRUE),
 Truelabels_TrainingData_0and1 <- TrainingLabels[trainint]
 
 #Training Labels as a matrix
-Truelabels_TrainingData <- Truelabels_TrainingData_0and1
+Truelabels_TrainingData <- Truelabels_0and1[trainint,]
 Truelabels_TrainingData <- as.numeric(Truelabels_TrainingData)
 Truelabels_TrainingData <-as.matrix(Truelabels_TrainingData)
 
 #Training Observations
-TrainingData <- TrainingData[trainint,]
+TrainingData <- x[trainint,]
 
 #Testing Labels as a Matrix
 Truelabels_TestingData <- TestingLabels
@@ -71,7 +71,7 @@ Truelabels_TestingData <- as.matrix(Truelabels_TestingData)
 #Testing Observations
 TestingData <- TestingData
 
-TrainingData = data.frame(cbind(TrainingData,Truelabels_TrainingData_0and1))
+TrainingData = data.frame(cbind(TrainingData,Truelabels_TrainingData))
 
 
 #Converting to Matrices for Subsetting
@@ -84,5 +84,11 @@ yy <- read.table(textConnection(""),col.names=colnames(dtm.mat),colClasses="inte
 #Configuring Indicator Matrix
 IndicatorMatrix <-read.csv('Indicator Matrix_TrainingData.csv')
 TrainingIndicatorMatrix <- IndicatorMatrix[trainint,]
-TestingIndicatorMatrix <- IndicatorMatrix[TestingData,]
+TestingIndicatorMatrix <- IndicatorMatrix[-int,]
+
 ############################################################################################################################################################
+
+# Illustrates issue with indicator matrix.
+err = cbind(cbind(TrainingIndicatorMatrix, Truelabels_TrainingData) )
+
+err = cbind(cbind(TestingIndicatorMatrix, Truelabels_TestingData) )
