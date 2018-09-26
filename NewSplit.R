@@ -189,6 +189,7 @@ lbls = c(rep(1, numTrainPerClass), rep(2, numTrainPerClass))
 # Misclassification rate.
 count(as.numeric(preds_best_SDAAP$class) == lbls)
 err_in = sum(as.numeric(preds_best_SDAAP$class) == lbls)/length(lbls)
+misclass_in = 1-err_in
 
 # Make confusion matrix.
 confmat <- matrix(0,2,2)
@@ -261,6 +262,7 @@ Testing_preds_best_SDAAP <- predict(object=best_SDAAP, newdata=as.matrix(Testing
 tstlbls = c(rep(1, numTestPerClass), rep(2, numTestPerClass))
 count(as.numeric(Testing_preds_best_SDAAP$class) == tstlbls)
 err_out = sum(as.numeric(Testing_preds_best_SDAAP$class) == tstlbls)/length(tstlbls)
+misclass_out = 1 - err_out
 
 # Make confusion matrix.
 tstconf <- matrix(0,2,2)
